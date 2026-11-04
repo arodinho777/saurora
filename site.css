@@ -1,0 +1,147 @@
+/* Saurora: shared look. Colours come from the logo; Bebas Neue and Barlow are the game's own fonts (OFL, see fonts/). */
+@font-face{font-family:"Bebas Neue";src:url(fonts/BebasNeue-Regular.ttf) format("truetype");font-display:swap}
+@font-face{font-family:Barlow;src:url(fonts/Barlow-Regular.ttf) format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:Barlow;src:url(fonts/Barlow-Bold.ttf) format("truetype");font-weight:700;font-display:swap}
+:root{--ink:#0f0c09;--panel:#17120d;--bone:#efe6d2;--dim:#bdb19a;--red:#e2401b;--line:rgba(239,230,210,.16);--wide:1240px;--pad:clamp(20px,4vw,48px)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ink);color:var(--bone);font:18px/1.6 Barlow,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:"Bebas Neue",Barlow,sans-serif;font-weight:400;letter-spacing:.02em;line-height:1;margin:0}
+h2{font-size:clamp(44px,6vw,76px)}
+p{margin:0}
+:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* buttons: cut corners, like the logo */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:6px 30px 4px;font:400 25px/1 "Bebas Neue",Barlow,sans-serif;letter-spacing:.04em;text-decoration:none;text-align:center;clip-path:polygon(12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px),0 12px);transition:background-color .15s,color .15s}
+.btn:focus-visible{outline-offset:-6px;outline-color:var(--ink)}
+.btn.go{background:var(--red);color:var(--ink)}
+.btn.go:hover{background:#f4562f}
+.btn.ghost{background:rgba(239,230,210,.14);color:var(--bone);backdrop-filter:blur(6px)}
+.btn.ghost:hover{background:rgba(239,230,210,.26)}
+.btn.ghost:focus-visible{outline-color:#fff}
+.btn.small{min-height:44px;padding:4px 20px 2px;font-size:20px}
+
+/* top bar */
+.top{position:absolute;inset:0 0 auto;z-index:5;display:flex;align-items:center;gap:clamp(12px,2vw,24px);padding:16px var(--pad)}
+.top .home{display:block;margin-right:auto}
+.top .home img{width:48px;height:48px}
+.langs{display:flex;gap:4px;font-size:15px;font-weight:700;letter-spacing:.04em}
+.langs a{display:flex;align-items:center;min-height:44px;padding:0 10px;color:var(--dim);text-decoration:none}
+.langs a:hover{color:var(--bone)}
+.langs a[aria-current]{color:var(--bone);box-shadow:inset 0 -2px 0 var(--red)}
+
+/* first screen */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:#000}
+.hero video,.hero .still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--ink) 0,rgba(15,12,9,.72) 26%,rgba(15,12,9,.12) 58%,rgba(15,12,9,.42) 100%)}
+.hero .say{position:relative;z-index:2;width:100%;max-width:calc(var(--wide) + 2*var(--pad));margin:0 auto;padding:0 var(--pad) clamp(32px,6vh,72px)}
+.hero .logo{width:min(440px,78vw);height:auto;margin:0 0 clamp(14px,2.4vh,26px)}
+.hero h1{font-size:clamp(50px,9vw,124px)}
+.hero p{max-width:34em;margin:14px 0 24px;font-size:clamp(18px,2vw,22px);line-height:1.45}
+.acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero .note{margin:14px 0 0;font-size:15px;color:var(--dim)}
+
+/* trailer */
+.wrap{max-width:calc(var(--wide) + 2*var(--pad));margin:0 auto;padding-inline:var(--pad)}
+.block{padding-block:clamp(56px,9vw,120px)}
+.trailer h2{margin-bottom:24px}
+.trailer video{width:100%;height:auto;aspect-ratio:16/9;background:#000}
+
+/* the story: picture and words, side by side */
+.story{display:grid;grid-template-columns:7fr 5fr;align-items:stretch;background:var(--panel)}
+.story+.story{border-top:1px solid var(--ink)}
+.story figure{margin:0;min-height:clamp(320px,58vh,680px);position:relative}
+.story img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.story .words{align-self:center;padding:clamp(32px,5vw,80px)}
+.story h2{font-size:clamp(40px,4.6vw,66px);margin-bottom:18px}
+.story p{max-width:30em;font-size:clamp(18px,1.5vw,21px)}
+.story.flip figure{order:2}
+@media (max-width:820px){
+  .story{grid-template-columns:1fr}
+  .story figure{min-height:0;aspect-ratio:16/10}
+  .story.flip figure{order:0}
+  .story .words{padding:28px var(--pad) 48px}
+}
+
+/* the animals */
+.dinos header{margin-bottom:clamp(24px,3vw,40px)}
+.dinos header p{margin-top:12px;color:var(--dim);font-size:clamp(18px,1.5vw,21px)}
+.picker{display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:clamp(20px,3vw,44px);align-items:start}
+.names{display:flex;flex-direction:column;gap:2px}
+.names button{all:unset;box-sizing:border-box;display:block;cursor:pointer;padding:9px 16px 6px;font:400 clamp(24px,2.3vw,31px)/1.05 "Bebas Neue",Barlow,sans-serif;letter-spacing:.03em;color:var(--dim);border-left:3px solid transparent;transition:color .12s,border-color .12s}
+.names button:hover{color:var(--bone)}
+.names button[aria-selected=true]{color:var(--bone);border-left-color:var(--red);background:var(--panel)}
+.names button:focus-visible{outline:3px solid #fff;outline-offset:-3px}
+.stage img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;background:var(--panel)}
+.stage h3{font-size:clamp(34px,3.6vw,50px);margin:18px 0 6px}
+.stage p{max-width:34em;font-size:clamp(18px,1.5vw,21px);min-height:3.2em}
+@media (max-width:820px){
+  .picker{grid-template-columns:minmax(0,1fr)}
+  .names{flex-direction:row;overflow-x:auto;gap:0;margin-inline:calc(-1*var(--pad));padding-inline:var(--pad);scrollbar-width:none;scroll-snap-type:x proximity}
+  .names::-webkit-scrollbar{display:none}
+  .names button{flex:none;min-height:48px;padding:12px 14px 8px;font-size:23px;border-left:0;border-bottom:3px solid transparent;scroll-snap-align:center}
+  .names button[aria-selected=true]{background:none;border-left:0;border-bottom-color:var(--red)}
+  .stage img{margin-inline:calc(-1*var(--pad));width:calc(100% + 2*var(--pad));max-width:none}
+}
+
+/* pictures */
+.shots{padding-top:0}
+.shots h2{margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(6px,1vw,12px)}
+.grid a{display:block;grid-column:span 2;overflow:hidden;background:var(--panel)}
+.grid a.big{grid-column:span 3}
+.grid img{width:100%;height:100%;aspect-ratio:16/10;object-fit:cover;transition:transform .35s}
+.grid a:hover img{transform:scale(1.03)}
+.grid a:focus-visible{outline-offset:-3px}
+.shots .note{margin-top:14px;color:var(--dim);font-size:15px}
+@media (max-width:820px){.grid a,.grid a.big{grid-column:span 3}.grid a.big:first-child{grid-column:span 6}}
+@media (prefers-reduced-motion:reduce){.grid img{transition:none}.grid a:hover img{transform:none}}
+dialog.view{padding:0;border:0;background:none;max-width:none;max-height:none;width:100vw;height:100vh;height:100dvh}
+dialog.view::backdrop{background:rgba(8,6,4,.94)}
+dialog.view img{width:100%;height:100%;object-fit:contain;cursor:zoom-out}
+
+/* the beta */
+.beta{position:relative;overflow:hidden;background:#000}
+.beta>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 80%}
+.beta::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,12,9,.94) 0,rgba(15,12,9,.84) 46%,rgba(15,12,9,.22) 100%)}
+.beta .wrap{position:relative;z-index:2;padding-block:clamp(64px,10vw,140px)}
+.beta h2{margin-bottom:16px}
+.beta p{max-width:32em;font-size:clamp(18px,1.5vw,21px)}
+.beta .acts{margin:24px 0 16px}
+.beta small{display:block;max-width:40em;color:var(--dim);font-size:15px}
+.beta small a{color:var(--bone)}
+@media (max-width:820px){.beta::after{background:rgba(15,12,9,.84)}}
+
+/* bottom */
+.end{border-top:1px solid var(--line);padding-block:36px 48px;color:var(--dim);font-size:15px}
+.end .row{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center;margin-bottom:14px}
+.end a{display:inline-flex;align-items:center;min-height:32px;text-decoration:none}
+.end a:hover{color:var(--bone);text-decoration:underline}
+.end .mark{width:40px;height:40px;margin-right:6px}
+
+/* written pages: rules, privacy */
+.page-top{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;max-width:760px;margin:0 auto;padding:18px 20px 0;font-size:15px}
+.page-top .home{margin-right:auto;display:block}
+.page-top .home img{width:44px;height:44px}
+.page-top a{color:var(--dim);text-decoration:none}
+.page-top a:hover,.page-top a[aria-current]{color:var(--bone)}
+.page{max-width:760px;margin:0 auto;padding:28px 20px 64px;font-size:17px}
+.page h1{font-size:clamp(40px,7vw,60px);margin:6px 0 18px}
+.page h2{font-size:32px;margin:34px 0 8px;color:var(--bone)}
+.page p,.page ul,.page ol{margin:0 0 14px}
+.page li{margin:4px 0}
+.page a{color:#f0a184}
+.page strong{color:#fff}
+.page .t{overflow-x:auto;margin:0 0 16px;border:1px solid var(--line)}
+.page table{border-collapse:collapse;width:100%;font-size:15px}
+.page th,.page td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+.page th{background:var(--panel);color:var(--dim);font-weight:700}
+.page tr:last-child td{border-bottom:0}
+.page mark{background:#5a2412;color:#fff;padding:0 3px}
+.page footer{color:var(--dim);font-size:14px;border-top:1px solid var(--line);margin-top:40px;padding-top:16px}
+
+/* small phones: the first screen has its own button, the top bar doesn't need one */
+@media (max-width:520px){.top .btn{display:none}.langs{margin-right:-10px}}
